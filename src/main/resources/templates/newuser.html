@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新增、编辑客户</title>
+</head>
+<body>
+<form th:action="@{/customers/save}" method="post">
+
+    <div >
+        <label>id</label>
+        <input type="text" name="id" readonly="readonly" th:field="${user.id}" />
+    </div>
+    <div>
+        <label>name</label>
+        <input type="text" name="username" th:field="${user.username}" />
+    </div>
+    <div>
+        <label>age</label>
+        <input type="text" name="birthday" th:field="${user.birthday}" />
+    </div>
+    <div>
+        <label>isUse</label>
+        <input type="text" name="sex" th:field="${user.sex}" />
+    </div>
+    <div>
+        <input type="submit" value="提交" />
+    </div>
+</form>
+</body>
+</html>

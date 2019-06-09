@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Hello World!</title>
+    <style>
+        table{border-collapse:collapse;}
+        table,th, td{border: 1px solid black;padding: 5px;text-align: center;}
+    </style>
+</head>
+<body>
+<br/>
+<br/>
+<a href="/adduser">新增用户</a>
+<br/>
+<br/>
+<table>
+    <tr>
+    <th>id</th>
+    <th>username</th>
+    <th>sex</th>
+    <th>birthday</th>
+    <th>address</th>
+    <!--<th>decidedzoneId</th>-->
+    </tr>
+    <!--
+        对集合变量hello进行遍历
+    -->
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.sex}"></td>
+        <td th:text="${user.birthday}"></td>
+        <td th:text="${user.address}"></td>
+        <!--        <td th:text="${customer.decidedzoneId}"></td>-->
+    </tr>
+</table>
+</body>
+</html>
+
