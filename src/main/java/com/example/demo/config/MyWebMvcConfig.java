@@ -20,12 +20,12 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
         //注册首页：
         registry.addViewController("/").setViewName("login");
 //        registry.addViewController("/login.html").setViewName("login");
-//        registry.addViewController("/success").setViewName("userlist.html"); //配置登陆页映射
+//        registry.addViewController("/success").setViewName("itemslist.html"); //配置登陆页映射
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/static/**").excludePathPatterns("/login");
-
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/static/**","/login","/login.html");  //需要放行的路径；
+//        super.addInterceptors(registry);
     }
 }

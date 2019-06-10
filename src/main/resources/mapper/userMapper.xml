@@ -42,5 +42,8 @@ mapper接口代理实现编写规则:
 		insert into user (username,birthday,sex,address) values(#{username},#{birthday},#{sex},#{address})
 	</select>
 
+    <select id="findByPage" parameterType="java.lang.Integer" resultType="com.example.demo.pojo.user">
+		select * from user LIMIT #{currPage * pageSize - pageSize},#{currPage * pageSize}
+	</select>
 
 </mapper>

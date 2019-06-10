@@ -35,6 +35,25 @@
         <td th:text="${user.address}"></td>
         <!--        <td th:text="${customer.decidedzoneId}"></td>-->
     </tr>
+    <br/>
+    <a th:href="@{ /selectByPageTest(currPage=1) }">首页</a>
+    <a th:href="@{/selectByPageTest(currPage=${currPage}-1)}">上一页</a> <!--这两个currPage要分清，第一个是要传给后端的，也就是上一页的页数，第二个是后端传过来的，也就是这一页的页灵长-->
+
+    <span th:each="i : ${ #numbers.sequence(1,totalPage) }">
+        <a th:text="${i}" th:href="@{ /selectByPageTest(currPage=${i}) }"></a>
+    </span>
+
+    <a th:href="@{/selectByPageTest(currPage=${currPage}+1)}">下一页</a>
+    <a th:href="@{ /selectByPageTest(currPage=${totalPage}) }">尾页</a>
+
+    <div>
+        <form action="/selectByPageTest" method="get">
+            跳转到第
+            <input type="number" name="currPage" />
+            页
+            <input type="submit" value="跳转"/>
+        </form>
+    </div>
 </table>
 </body>
 </html>

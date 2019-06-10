@@ -12,11 +12,11 @@ public interface userMapper {
 
     int insertSelective(user record);
 
-
 //    @Select("SELECT * FROM `user`")
 //    List<user> findUserById();
     user findUserById(Integer id);
     List<user>  findUsers();
-    @Update("update user set username=#{username}where id=#{id}")
-    void update(user user);
+//    @Update("update user set username=#{username}where id=#{id}")
+//    void update(user user);
+    List<user> findByPage(int currPage,int pageSize);
 }

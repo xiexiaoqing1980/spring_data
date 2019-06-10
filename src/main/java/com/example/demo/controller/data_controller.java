@@ -26,7 +26,7 @@ public class data_controller {
     public String  selectUsers(Model model){
 
         model.addAttribute("users",userService.findUsers());
-        return "userlist"; //forward
+        return "itemslist"; //forward
     }
 //    @GetMapping("/adduser")
 //    public String  adduser (){
