@@ -23,9 +23,9 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
 //        registry.addViewController("/success").setViewName("itemslist.html"); //配置登陆页映射
     }
 
-    @Override
+    /*@Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/static/**","/login","/login.html");  //需要放行的路径；
 //        super.addInterceptors(registry);
-    }
+    }*/
 }

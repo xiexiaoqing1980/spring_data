@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import com.example.demo.pojo.user;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -18,5 +19,5 @@ public interface userMapper {
     List<user>  findUsers();
 //    @Update("update user set username=#{username}where id=#{id}")
 //    void update(user user);
-    List<user> findByPage(int currPage,int pageSize);
+    List<user> findByPage(@Param("start")int start, @Param("end")int end);
 }
