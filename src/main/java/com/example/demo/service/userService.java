@@ -8,6 +8,6 @@ public interface userService {
 
     user findUserById(Integer id);
     List<user> findUsers();
-    int adduser(user user);
+    void adduser(user user);
 
 }

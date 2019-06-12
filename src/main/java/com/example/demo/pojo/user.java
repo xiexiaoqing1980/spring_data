@@ -1,16 +1,24 @@
 package com.example.demo.pojo;
 
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.metadata.BaseRowModel;
+
 import java.util.Date;
 
-public class user {
+public class user extends BaseRowModel {
+    @ExcelProperty(value="id",index =0)
     private Integer id;
 
+    @ExcelProperty(value="username",index =1)
     private String username;
 
+    @ExcelProperty(value="sex",index =2)
     private String sex;
 
+    @ExcelProperty(value="birthday",index =3)
     private Date birthday;
 
+    @ExcelProperty(value="address",index =4)
     private String address;
 
     public Integer getId() {

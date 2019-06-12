@@ -5,11 +5,13 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface userMapper {
-    int adduser(user record);
+    void adduser(user record);
 
     int insertSelective(user record);
 
@@ -20,4 +22,5 @@ public interface userMapper {
 //    @Update("update user set username=#{username}where id=#{id}")
 //    void update(user user);
     List<user> findByPage(@Param("start")int start, @Param("end")int end);
+    void deleteuser(Integer id);
 }

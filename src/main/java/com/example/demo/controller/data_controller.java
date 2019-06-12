@@ -34,13 +34,20 @@ public class data_controller {
         model.addAttribute("users",userService.findUsers());
         return "itemslist"; //forward
     }
-//    @GetMapping("/adduser")
-//    public String  adduser (){
-//        userService.adduser(use)
-//        return "newuser";
-//
-//    }
+    @GetMapping("/adduser")
+    public String  adduser (user user){
+        userService.adduser(user);
+        return "redirect:/selectByPageTest";
 
+    }
+
+    @GetMapping("/deleteuser")
+    public String  deleteuser (Integer id){
+//        userService.adduser(user);
+        userMapper.deleteuser(id);
+        return "redirect:/selectByPageTest";
+
+    }
     //开始分页显示
     @GetMapping("/selectByPageTest")
     public String  selectByPageTest(Model model,@RequestParam(value = "currPage",defaultValue = "1") int currPage ){
