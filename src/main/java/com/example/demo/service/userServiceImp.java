@@ -4,6 +4,7 @@ import com.example.demo.dao.userMapper;
 import com.example.demo.pojo.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,9 @@ public class userServiceImp implements userService {
     @Autowired
     userMapper userMapper;
     @Override
+    @Cacheable(key="#p0")
     public user findUserById(Integer id) {
+        System.out.println("走数据库查询");
         return  userMapper.findUserById(id);
 
     }
@@ -33,8 +36,16 @@ public class userServiceImp implements userService {
 
     @Override
 //    @CachePut 是先执行方法，然后把返回值保存或更新到缓存中
-    @CachePut(key = "123")
+    @CachePut(key = "#p.id")  //保证方法被调用，又希望结果被缓存。与@Cacheable区别在于是否每次都调用方法，常用于更新
+
     public void adduser(user user) {
          userMapper.adduser(user);
+    }
+
+    @Override
+    @CacheEvict(key ="#id")
+    public void deleteUser(Integer id) {
+        userMapper.deleteuser(id);
+
     }
 }

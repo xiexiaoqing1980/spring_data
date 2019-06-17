@@ -23,6 +23,7 @@ public class data_controller {
     private userMapper userMapper;
 
     @GetMapping("/user/{id}")
+    @ResponseBody
     public user selectUsers(@PathVariable("id") Integer id){
         user user=userService.findUserById(id);
         return user;
@@ -41,12 +42,11 @@ public class data_controller {
 
     }
 
-    @GetMapping("/deleteuser")
+    @GetMapping("/deleteuser")  //
     public String  deleteuser (Integer id){
 //        userService.adduser(user);
-        userMapper.deleteuser(id);
+        userService.deleteUser(id);
         return "redirect:/selectByPageTest";
-
     }
     //开始分页显示
     @GetMapping("/selectByPageTest")

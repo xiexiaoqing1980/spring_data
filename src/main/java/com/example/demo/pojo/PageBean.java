@@ -5,6 +5,8 @@ public class PageBean {
     private int pageSize; //每页显示记录数
     private int totalCount; //总记录数
     private int totalPage; //总页数,需要计算
+    private int previous;
+    private int next;
 
     public PageBean(int currPage, int pageSize, int totalCount) {
         this.pageSize = pageSize;
@@ -19,6 +21,14 @@ public class PageBean {
             currPage = totalPage;
         }
         this.currPage = currPage;
+        this.previous=this.currPage-1;
+        if (previous<=0){
+            previous =1;
+        }
+        this.next=this.currPage+1;
+        if (this.next>this.totalPage){
+            this.next=totalPage;
+        }
     }
 
     public int getCurrPage() {
