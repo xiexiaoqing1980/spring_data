@@ -1,30 +1,36 @@
 package com.example.demo.controller;
 
+import com.alibaba.excel.EasyExcelFactory;
+import com.alibaba.excel.ExcelReader;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
+import com.example.demo.Excelprocess.ExcelListener;
 import com.example.demo.pojo.user;
 import com.example.demo.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.List;
 
-@Controller
+@RestController
 public class ExcelProcessController {
 
     @Autowired
     private userService userService;
 
-    @RequestMapping("/exportExcel")
-    public void exportExcel(){
+
+    //此方法只是将文件写入到了指定的文件，但是不会用附件的方式下载
+    @RequestMapping("/writeExcel")
+    public String exportExcel(){
         //调用service查询方法返回结果集
         List<user> users = userService.findUsers();
         OutputStream out=null;
@@ -47,10 +53,69 @@ public class ExcelProcessController {
                 out.close();
             } catch (IOException e) {
                 e.printStackTrace();
+                return "false";
             }
         }
+        return "success";
+
+    }
 
 
+/**
+ * 格式说明：
+ * content-disposition = "Content-Disposition" ":" disposition-type *( ";" disposition-parm ) 　
+ *
+ * 字段说明：
+ * Content-Disposition为属性名
+ * disposition-type是以什么方式下载，如attachment为以附件方式下载
+ * disposition-parm为默认保存时的文件名
+ */
+@RequestMapping("/exportExcel")
+public void exportExcel(HttpServletResponse response,String param) throws Exception{
+    //调用service查询方法返回结果集
+    String fileName = "userdata";
+//    response.setContentType("multipart/form-data");
+    response.setCharacterEncoding("utf-8");
+    //通知浏览器以附件的形式下载处理
+    response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
+    List<user> users = userService.findUsers();
+    ServletOutputStream out = response.getOutputStream();
+    ExcelWriter writer = new ExcelWriter(out, ExcelTypeEnum.XLSX, true);
+
+    Sheet sheet = new Sheet(1, 0,user.class);
+    //设置自适应宽度
+    sheet.setAutoWidth(Boolean.TRUE);
+    writer.write(users, sheet);
+    writer.finish();
+    // 设置输出的格式，二进制
+
+    out.flush();
+}
+    @RequestMapping("/importExcel")
+    @ResponseBody
+    public  List<Object>  importfile(MultipartFile file) throws Exception {
+
+        InputStream inputStream = file.getInputStream();;
+
+        List<Object> datas = null;
+
+        try {
+            ExcelListener excelListener = new ExcelListener();
+//            inputStream=new FileInputStream(new File("D://userdata.xlsx"));
+//            ExcelReader reader = new ExcelReader(inputStream, null,excelListener);
+             datas= EasyExcelFactory.read(inputStream,new Sheet(1, 2, null));
+//            reader.read(new Sheet(1, 2, null));
+//            datas = excelListener.getDatas();
+        } catch (Exception e) {
+        } finally {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return datas;
+        }
     }
 
 
