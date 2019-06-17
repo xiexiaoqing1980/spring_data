@@ -5,8 +5,6 @@ import com.alibaba.excel.metadata.BaseRowModel;
 
 import java.util.Date;
 
-
-
 public class user extends BaseRowModel {
     @ExcelProperty(value="id",index =0)
     private Integer id;
