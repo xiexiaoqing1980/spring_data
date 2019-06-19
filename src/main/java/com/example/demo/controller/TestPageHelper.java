@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -17,8 +18,8 @@ public class TestPageHelper {
     @Autowired
     private userService userService;
     //开始分页显示
-    @GetMapping("/selectByPageHelper")
-    public String  selectByPageTest(Model model, @RequestParam(value = "currPage",defaultValue = "1") int currPage ){
+    @GetMapping("/selectByPageHelper/{currPage}")   //从缓存中查数据不会分页
+    public String  selectByPageTest(Model model, @PathVariable("currPage") int currPage ){
 
 //        int totalcount=userService.findUsers().size(); //获取数据的总长度即可
         int pageSize=5;

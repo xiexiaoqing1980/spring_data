@@ -25,6 +25,7 @@ public class SpringDataApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		template.opsForValue().set("aa","bb");
 
 	}
 }

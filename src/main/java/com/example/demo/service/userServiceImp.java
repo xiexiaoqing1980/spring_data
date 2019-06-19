@@ -26,7 +26,7 @@ public class userServiceImp implements userService {
     }
 
     @Override
-    @Cacheable(key="#root.methodName") // @Cacheable 会先查询缓存，如果缓存中存在，则不执行方法
+    @Cacheable(keyGenerator = "keyGenerator") // @Cacheable 会先查询缓存，如果缓存中存在，则不执行方法
     public List<user> findUsers() {
         System.out.println("缓存中没有数据，要从数据库中查");
         List<user> users=userMapper.findUsers();

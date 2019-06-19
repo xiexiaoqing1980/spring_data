@@ -23,7 +23,7 @@ import java.lang.reflect.Method;
 import java.time.Duration;
 
 @Configuration
-public class CacheConfigure extends CachingConfigurerSupport {
+public class CacheConfigure  {
     //自定义key的生成规则
 
     @Bean
