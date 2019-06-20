@@ -22,7 +22,6 @@ public class ExcelListener extends AnalysisEventListener {
         System.out.println("当前sheet"+context.getCurrentSheet().getSheetNo()+ " 当前行：" + context.getCurrentRowNum()
                 + " data:" + stringList.get(0));
 
-
     }
 
     @Override
