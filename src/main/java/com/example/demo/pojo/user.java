@@ -2,10 +2,12 @@ package com.example.demo.pojo;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.metadata.BaseRowModel;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
+@Data
 public class user extends BaseRowModel implements Serializable {
     @ExcelProperty(value="id",index =0)
     private Integer id;

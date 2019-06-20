@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Data
+@Data  //简化get set方法
 public class DynamicEntity implements Serializable {
 
     private static final long serialVersionUID = 5954091726694179317L;
