@@ -12,34 +12,26 @@ import java.util.Map;
 public class DynamicEntity implements Serializable {
 
     private static final long serialVersionUID = 5954091726694179317L;
-    private List<ColumnInfo> columns=new ArrayList<>();
-    private Map<Integer,List> rowDatas = new HashMap<>();
+    private Map<Integer,List<ColumnInfo>> cols = new HashMap<>();
+    private Map<Integer ,List<RowData>> rowDatas = new HashMap<>();
 
+    /**
+     * 添加行数据到map集合中
+     * @param sheetno
+     * @param rowData
+     */
+    public void addRowData( int sheetno,RowData rowData) {
+//        if (!rowDatas.containsKey(sheetno)) {
+////            datas.add(object);
+//            rowDatas.put(sheetno, new ArrayList<Object>());  //第一次的时候，先添加
+//        }
+//            rowDatas.get(sheetno).add(object);//第二次直接添加
 
-    public List<ColumnInfo> getColumns() {
-        return columns;
-    }
-
-    public void setColumns(List<ColumnInfo> columns) {
-        this.columns = columns;
-    }
-
-    public void addRowData( int sheetno,Object object) {
-        if (!rowDatas.containsKey(sheetno)) {
-//            datas.add(object);
-            rowDatas.put(sheetno, new ArrayList<Object>());  //第一次的时候，先添加
+        if (!rowDatas.containsKey(sheetno)){
+            rowDatas.put(sheetno,new ArrayList<RowData>());
         }
-            rowDatas.get(sheetno).add(object);//第二次直接添加
-
+        rowDatas.get(sheetno).add(rowData);
     }
 
 
-
-    public Map<Integer, List> getRowDatas() {
-        return rowDatas;
-    }
-
-    public void setRowDatas(Map<Integer, List> rowDatas) {
-        this.rowDatas = rowDatas;
-    }
 }

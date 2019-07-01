@@ -38,5 +38,11 @@ public class SpringDataApplicationTests {
         System.out.println(demo.toString());
 
     }
+	@Test
+	public void testJson() {
+
+
+	}
+
 
 }

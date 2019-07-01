@@ -29,8 +29,8 @@ public class ExcelServiceImpl implements ExcelService {
             for(Sheet sheet : sheets) {
                 excelReader.read(sheet);
 //                datas=excelListener.getDatas();
-
             }
+            dynamicEntity=excelListener.getDynamicEntity();
             inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
