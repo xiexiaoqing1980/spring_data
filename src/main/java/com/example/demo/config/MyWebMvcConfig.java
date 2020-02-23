@@ -1,6 +1,6 @@
 package com.example.demo.config;
 
-import com.example.demo.interceptor.LoginInterceptor;
+//import com.example.demo.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

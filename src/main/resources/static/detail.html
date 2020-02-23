@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
+<!--<script type="text/javascript" src="/js/bootstrap.min.js"></script>-->
+<body>
+<div class="index-container">
+    <div class="topic-flow-container">
+        <div class="group-list-container">
+            <div class="group-list-wrapper"></div>
+        </div>
+
+        <div class="main-content-container">
+            <!--<div class="post-container"></div>-->
+            <div class="topic-filter-container">
+                <div class="filter-container">过滤器</div>
+                <!--<div class="select-icon"></div>-->
+            </div>
+
+            <div class="sticky-topic-container">置顶帖</div>
+
+            <div class="topics-container">
+            </div>
+
+            <div class="next-page">
+                下一页
+            </div>
+
+        </div>
+
+        <div class="group-preview-container">
+            <div class="group-preview-wrapper">
+            </div>
+        </div>
+
+        <div class="go-top" id="js-gotop">返回顶部</div>
+    </div>
+</div>
+
+
+
+</body>
+<script>
+    $(document).ready(function() {
+            $.ajax({
+                url : "http://127.0.0.1:8081/zsxq/yecheng",//后台请求的数据，用的是PHP
+                dataType : "json",//数据格式
+                type : "get",//请求方式
+                async : true,//是否异步请求
+                error: erryFunction, //错误执行方法
+                success : function(data) {   //如果请求成功，返回数据。
+                var html = "";
+                var model = data.model;   //获取model数组
+                 $.each(model, function(index, item){
+
+                        $('.topics-container').append('<div class="topic-container">' +item.talk.text+"</div>");
+                    });
+<!--                for(var i=0;i<model.length; i++){    //遍历model数组-->
+<!--                        var text = model[i].talk.text;-->
+<!--                        var comments = model[i].show_comments-->
+<!--                        html +="<p>"+"<span>正文："+text+"</span>"+"</br>";-->
+<!--                        for(var j=0;j< comments.length;j++){-->
+<!--                             var name=comments[j].owner.name;   //获取名称-->
+<!--                             var comment = comments[j].text;-->
+<!--                             html+= name +":"+comment+"</p>";-->
+<!--               }-->
+<!--                    }-->
+<!--                    $("#list").html(html); //在html页面id=test的标签里显示html内容-->
+
+<!--                }-->
+
+            })
+            function LoadFunction() {
+             $("#list").html('加载中...');
+         }
+          function erryFunction() {
+
+             alert("error");
+
+         }
+        })
+<!-- alert(1)-->
+</script>
+</html>

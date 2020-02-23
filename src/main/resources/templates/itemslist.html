@@ -37,25 +37,25 @@
         <!--        <td th:text="${customer.decidedzoneId}"></td>-->
     </tr>
     <br/>
-    <a th:href="@{ /selectByPageTest(currPage=1) }">首页</a>
-    <!--/*@thymesVar id="currPage" type=""*/-->
-    <a th:href="@{/selectByPageTest(currPage=${pagebean.currPage}-1)}">上一页</a> <!--这两个currPage要分清，第一个是要传给后端的，也就是上一页的页数，第二个是后端传过来的，也就是这一页的页灵长-->
+<!--    <a th:href="@{ /selectByPageTest(currPage=1) }">首页</a>-->
+<!--    &lt;!&ndash;/*@thymesVar id="currPage" type=""*/&ndash;&gt;-->
+<!--    <a th:href="@{/selectByPageTest(currPage=${pagebean.currPage}-1)}">上一页</a> &lt;!&ndash;这两个currPage要分清，第一个是要传给后端的，也就是上一页的页数，第二个是后端传过来的，也就是这一页的页灵长&ndash;&gt;-->
 
-    <span th:each="i : ${ #numbers.sequence(1,pagebean.totalPage) }">
-        <a th:text="${i}" th:href="@{ /selectByPageTest(currPage=${i}) }"></a>
-    </span>
+<!--    <span th:each="i : ${ #numbers.sequence(1,pagebean.totalPage) }">-->
+<!--        <a th:text="${i}" th:href="@{ /selectByPageTest(currPage=${i}) }"></a>-->
+<!--    </span>-->
 
-    <a  th:href="@{/selectByPageTest(currPage=${pagebean.currPage}+1)}">下一页</a>
-    <a th:href="@{ /selectByPageTest(currPage=${pagebean.totalPage}) }">尾页</a>
+<!--    <a  th:href="@{/selectByPageTest(currPage=${pagebean.currPage}+1)}">下一页</a>-->
+<!--    <a th:href="@{ /selectByPageTest(currPage=${pagebean.totalPage}) }">尾页</a>-->
 
-    <div>
-        <form action="/selectByPageTest" method="get">
-            跳转到第
-            <input type="number" name="currPage" />
-            页
-            <input type="submit" value="跳转"/>
-        </form>
-    </div>
+<!--    <div>-->
+<!--        <form action="/selectByPageTest" method="get">-->
+<!--            跳转到第-->
+<!--            <input type="number" name="currPage" />-->
+<!--            页-->
+<!--            <input type="submit" value="跳转"/>-->
+<!--        </form>-->
+<!--    </div>-->
 </table>
 </body>
 </html>

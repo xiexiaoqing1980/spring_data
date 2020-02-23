@@ -63,20 +63,21 @@ public class data_controller {
 
     @PostMapping ("/login")
     public  String login(user user, Model model, HttpSession session){
-        if (user!=null&&user.getId()!=null){
-            user user2=userService.findUserById(user.getId());
-            if (user2!=null){
-                model.addAttribute("user2",user2);
-                session.setAttribute("login_user",user2);
-                return "redirect:/userlist";
-//                return "/userlist";这样是直接
-            }else {
-
-                return "redirect:/login.html";
-            }
-        }else {
-            return "redirect:/login.html";
-        }
+//        if (user!=null&&user.getId()!=null){
+//            user user2=userService.findUserById(user.getId());
+//            if (user2!=null){
+//                model.addAttribute("user2",user2);
+//                session.setAttribute("login_user",user2);
+//                return "redirect:/userlist";
+////                return "/userlist";这样是直接
+//            }else {
+//
+//                return "redirect:/login.html";
+//            }
+//        }else {
+//            return "redirect:/login.html";
+//        }
+        return "redirect:/userlist";
 
 
 
