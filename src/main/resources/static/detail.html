@@ -55,8 +55,10 @@
                 var html = "";
                 var model = data.model;   //获取model数组
                  $.each(model, function(index, item){
+                 html+='<div class="topic-container">'+'<div class="topic-header-container">'
+                 +'<div class="author">'+'<div class="info">'+'<div class="role-owner">叶城 </div>'+'<div class="date"> 2020-02-24 14:33:23 </div></div></div></div></div>'
 
-                        $('.topics-container').append('<div class="topic-container">' +item.talk.text+"</div>");
+                  $('.topics-container').append(html);
                     });
 <!--                for(var i=0;i<model.length; i++){    //遍历model数组-->
 <!--                        var text = model[i].talk.text;-->
