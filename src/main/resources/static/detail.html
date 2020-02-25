@@ -45,45 +45,48 @@
 </body>
 <script>
     $(document).ready(function() {
-            $.ajax({
-                url : "http://127.0.0.1:8081/zsxq/yecheng",//后台请求的数据，用的是PHP
-                dataType : "json",//数据格式
-                type : "get",//请求方式
-                async : true,//是否异步请求
-                error: erryFunction, //错误执行方法
-                success : function(data) {   //如果请求成功，返回数据。
-                var html = "";
+        $.ajax({
+            url: "http://127.0.0.1:8081/zsxq/yecheng",
+            dataType: "json",//数据格式
+            type: "get",//请求方式
+            async: true,//是否异步请求
+            // error: erryFunction, //错误执行方法
+            success: function (data) {   //如果请求成功，返回数据。
+                var html = "";
                 var model = data.model;   //获取model数组
-                 $.each(model, function(index, item){
-                 html+='<div class="topic-container">'+'<div class="topic-header-container">'
-                 +'<div class="author">'+'<div class="info">'+'<div class="role-owner">叶城 </div>'+'<div class="date"> 2020-02-24 14:33:23 </div></div></div></div></div>'
+                $.each(model, function (index, item) {
+                    html += '<div class="topic-container"><div class="topic-header-container">
+                        + '<div class="author">' +  '<div class="info">' + '<div class="role-owner">叶城 </div>' + '<div class="date"> 2020-02-24 14:33:23 </div></div></div></div></div>';
 
-                  $('.topics-container').append(html);
-                    });
-<!--                for(var i=0;i<model.length; i++){    //遍历model数组-->
-<!--                        var text = model[i].talk.text;-->
-<!--                        var comments = model[i].show_comments-->
-<!--                        html +="<p>"+"<span>正文："+text+"</span>"+"</br>";-->
-<!--                        for(var j=0;j< comments.length;j++){-->
-<!--                             var name=comments[j].owner.name;   //获取名称-->
-<!--                             var comment = comments[j].text;-->
-<!--                             html+= name +":"+comment+"</p>";-->
-<!--               }-->
-<!--                    }-->
-<!--                    $("#list").html(html); //在html页面id=test的标签里显示html内容-->
+                    // $('.topics-container').append(html)
+                });
+                $('.topics-container').html(html);
+// <!--                for(var i=0;i<model.length; i++){    //遍历model数组-->
+// <!--                        var text = model[i].talk.text;-->
+// <!--                        var comments = model[i].show_comments-->
+// <!--                        html +="<p>"+"<span>正文："+text+"</span>"+"</br>";-->
+// <!--                        for(var j=0;j< comments.length;j++){-->
+// <!--                             var name=comments[j].owner.name;   //获取名称-->
+// <!--                             var comment = comments[j].text;-->
+// <!--                             html+= name +":"+comment+"</p>";-->
+// <!--               }-->
+// <!--                    }-->
+// <!--                    $("#list").html(html); //在html页面id=test的标签里显示html内容-->
+//
+// <!--                }-->
+//
+//             })
+//             function LoadFunction() {
+//              $("#list").html('加载中...');
+//          }
+//           function erryFunction() {
+//
+//              alert("error");
+//
+            }
+        })
+    })
 
-<!--                }-->
-
-            })
-            function LoadFunction() {
-             $("#list").html('加载中...');
-         }
-          function erryFunction() {
-
-             alert("error");
-
-         }
-        })
-<!-- alert(1)-->
+// <!-- alert(1)-->
 </script>
 </html>
