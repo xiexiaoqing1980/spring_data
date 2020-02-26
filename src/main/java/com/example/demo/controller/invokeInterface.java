@@ -12,6 +12,7 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import java.io.IOException;
@@ -23,16 +24,18 @@ public class invokeInterface {
 
     @GetMapping("/zsxq/yecheng")
     @ResponseBody
-    public String doGetJson () throws IOException {
-        String response=doPost();
+    public String doGetJson (@RequestParam(value ="id")String id) throws IOException {
+        String response=doPost(id);
         return  response;    //需要返回json串给前端调用
 
     }
 
-    public static String doPost( ) throws IOException {
+    public static String doPost( String id) throws IOException {
         HttpClient httpClient = HttpClients.createDefault();
-        String url="http://120.24.90.17:8088/zsxq/query/origin/detail?id=824511824552";
+//        String url="http://120.24.90.17:8088/zsxq/query/origin/detail?id=824511824552";
+        String url="http://120.24.90.17:8088/zsxq/query/origin/detail?id="+id;
         HttpGet httpGet =new HttpGet(url);
+
         JSONObject jsonObject =null;
         HttpResponse response = httpClient.execute(httpGet);
         String res=EntityUtils.toString(response.getEntity());

@@ -45,8 +45,11 @@
 </body>
 <script>
     $(document).ready(function() {
+    var id=getQueryVariable(id);
         $.ajax({
-            url: "http://127.0.0.1:8081/zsxq/yecheng",
+<!--            url: "http://127.0.0.1:8081/zsxq/yecheng",-->
+                url: "http://127.0.0.1:8081/zsxq/yecheng"+"?id="+id,
+<!--            url: "http://120.24.90.17:8088/zsxq/query/origin/detail?id=824511824552",-->
             dataType: "json",//数据格式
             type: "get",//请求方式
             async: true,//是否异步请求
@@ -95,6 +98,18 @@
             }
         })
     })
+
+    function  getQueryVariable(variable){
+
+	var str =location.search.length >0 ? location.search.substring(1):"";
+	var vars =str.split("&");
+	for(i in vars){
+		 var item=i.split("=");
+		if(item[0]== variable){
+			return item[1];
+	 }
+     }
+    }
 
 // <!-- alert(1)-->
 </script>
