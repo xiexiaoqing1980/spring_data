@@ -54,35 +54,44 @@
             success: function (data) {   //如果请求成功，返回数据。
                 var html = "";
                 var model = data.model;   //获取model数组
-                $.each(model, function (index, item) {
-                    html += '<div class="topic-container"><div class="topic-header-container">
-                        + '<div class="author">' +  '<div class="info">' + '<div class="role-owner">叶城 </div>' + '<div class="date"> 2020-02-24 14:33:23 </div></div></div></div></div>';
+                $.each(model, function (index1, item) {
+                    var comment='';
+
+                    $.each(item.show_comments,function (index,value) {
+                        comment+= '<div class="comment-item-container"><div class="comment-item"><span class="comment-owner">' +
+                            value.owner.name + '</span><span>' + value.text + '</span>'
+                            + '</div><div class="comment-time">' + convertTime(value.create_time) + '</div></div>';
+
+                    })
+                    html += '<div class="topic-container"><div class="topic-header-container">' +
+                        '<div class="author"><div class="info"><div class="role-owner">' + item.talk.owner.name + ' </div>' +
+                        '<div class="date">' + convertTime(item.create_time) + '</div></div></div></div>' + '<div class="talk-content-container"><div class="content">' + item.talk.text + '</div></div> <div class="comment-box">'+comment+'</div></div>'
+
 
                     // $('.topics-container').append(html)
                 });
                 $('.topics-container').html(html);
-// <!--                for(var i=0;i<model.length; i++){    //遍历model数组-->
-// <!--                        var text = model[i].talk.text;-->
-// <!--                        var comments = model[i].show_comments-->
-// <!--                        html +="<p>"+"<span>正文："+text+"</span>"+"</br>";-->
-// <!--                        for(var j=0;j< comments.length;j++){-->
-// <!--                             var name=comments[j].owner.name;   //获取名称-->
-// <!--                             var comment = comments[j].text;-->
-// <!--                             html+= name +":"+comment+"</p>";-->
-// <!--               }-->
-// <!--                    }-->
-// <!--                    $("#list").html(html); //在html页面id=test的标签里显示html内容-->
+                function convertTime(timestamp) {
+                    var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+                    Y = date.getFullYear() + '-';
+                    M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+                    D = change(date.getDate()) + ' ';
+                    h = change(date.getHours()) + ':';
+                    m = change(date.getMinutes()) + ':';
+                    s = change(date.getSeconds());
+                    return Y + M + D + h + m + s;
+
+                }
+
+                function change(t) {
+                    if (t < 10) {
+                        return "0" + t;
+                    } else {
+                        return t;
+                    }
+
 //
-// <!--                }-->
-//
-//             })
-//             function LoadFunction() {
-//              $("#list").html('加载中...');
-//          }
-//           function erryFunction() {
-//
-//              alert("error");
-//
+                }
             }
         })
     })
