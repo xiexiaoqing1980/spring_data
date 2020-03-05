@@ -44,12 +44,47 @@
 
 </body>
 <script>
+    var page=0;
     $(document).ready(function() {
-    var id=getQueryVariable(id);
+        getDetail( page);
+
+    })
+    function convertTime(timestamp) {
+        var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        Y = date.getFullYear() + '-';
+        M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+        D = change(date.getDate()) + ' ';
+        h = change(date.getHours()) + ':';
+        m = change(date.getMinutes()) + ':';
+        s = change(date.getSeconds());
+        return Y + M + D + h + m + s;
+    }
+    function change(t) {
+        if (t < 10) {
+            return "0" + t;
+        } else {
+            return t;
+        }
+//
+    }
+
+    function  getQueryVariable(variable){
+	var str =location.search.length >0 ? location.search.substring(1):"";
+	var vars =str.split("&");
+	for(var i=0;i<vars.length; i++){
+		 var item=vars[i].split("=");
+		if(item[0]== variable){
+			return item[1];
+	 }
+     }
+    }
+    
+    function getDetail( page) {
+        var id=getQueryVariable("id");
         $.ajax({
-<!--            url: "http://127.0.0.1:8081/zsxq/yecheng",-->
-                url: "http://127.0.0.1:8081/zsxq/yecheng"+"?id="+id,
-<!--            url: "http://120.24.90.17:8088/zsxq/query/origin/detail?id=824511824552",-->
+// <!--            url: "http://127.0.0.1:8081/zsxq/yecheng",-->
+            url: "http://127.0.0.1:8081/zsxq/yecheng"+"?id="+id+"&page="+page,
+// <!--            url: "http://120.24.90.17:8088/zsxq/query/origin/detail?id=824511824552",-->
             dataType: "json",//数据格式
             type: "get",//请求方式
             async: true,//是否异步请求
@@ -59,6 +94,9 @@
                 var model = data.model;   //获取model数组
                 $.each(model, function (index1, item) {
                     var comment='';
+                    if ((item.show_comments)!==null) {
+
+                    }
 
                     $.each(item.show_comments,function (index,value) {
                         comment+= '<div class="comment-item-container"><div class="comment-item"><span class="comment-owner">' +
@@ -74,42 +112,23 @@
                     // $('.topics-container').append(html)
                 });
                 $('.topics-container').html(html);
-                function convertTime(timestamp) {
-                    var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
-                    Y = date.getFullYear() + '-';
-                    M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-                    D = change(date.getDate()) + ' ';
-                    h = change(date.getHours()) + ':';
-                    m = change(date.getMinutes()) + ':';
-                    s = change(date.getSeconds());
-                    return Y + M + D + h + m + s;
 
-                }
-
-                function change(t) {
-                    if (t < 10) {
-                        return "0" + t;
-                    } else {
-                        return t;
-                    }
-
-//
-                }
             }
         })
-    })
-
-    function  getQueryVariable(variable){
-
-	var str =location.search.length >0 ? location.search.substring(1):"";
-	var vars =str.split("&");
-	for(i in vars){
-		 var item=i.split("=");
-		if(item[0]== variable){
-			return item[1];
-	 }
-     }
+        
     }
+    $(".next-page").click(function () {
+        page+=1;
+        getDetail(page);
+    } )
+
+    $(".go-top").click(function () {
+        page=0;
+        getDetail(page);
+    } )
+
+
+    
 
 // <!-- alert(1)-->
 </script>
