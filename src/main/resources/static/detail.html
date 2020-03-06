@@ -94,16 +94,28 @@
                 var model = data.model;   //获取model数组
                 $.each(model, function (index1, item) {
                     var comment='';
-                    if ((item.show_comments)!==null) {
+                    var show_comments=item.show_comments;
+                    if ((show_comments)!==null && show_comments.length!==0 ) {      //不为空时才进行评论拼接
+                        $.each(show_comments,function (index,value) {
+                            comment+= '<div class="comment-item-container"><div class="comment-item"><span class="comment-owner">' +
+                                value.owner.name + '</span><span>' + value.text + '</span>'
+                                + '</div><div class="comment-time">' + convertTime(value.create_time) + '</div></div>';
 
+                        })
+                    }
+                    //正文中图片的拼接
+                    var image=item.talk.images;
+                    var image_html='';
+                    if (image!==null){
+                        if(image.length>1){   //有多张图片
+                            image_html='<div class="image-gallery-container">'+'<div class="image-more"><div class="image-container"><img class="image-item" src=""></div>'
+
+                        }   //只有一张图片
                     }
 
-                    $.each(item.show_comments,function (index,value) {
-                        comment+= '<div class="comment-item-container"><div class="comment-item"><span class="comment-owner">' +
-                            value.owner.name + '</span><span>' + value.text + '</span>'
-                            + '</div><div class="comment-time">' + convertTime(value.create_time) + '</div></div>';
+                   '
 
-                    })
+
                     html += '<div class="topic-container"><div class="topic-header-container">' +
                         '<div class="author"><div class="info"><div class="role-owner">' + item.talk.owner.name + ' </div>' +
                         '<div class="date">' + convertTime(item.create_time) + '</div></div></div></div>' + '<div class="talk-content-container"><div class="content">' + item.talk.text + '</div></div> <div class="comment-box">'+comment+'</div></div>'
