@@ -26,10 +26,12 @@ spring:
       cache: false    #页面不加载缓存，修改即时生效
   debug: true
 
+
+#配置文件上传大小的限制
   servlet:
     multipart:
-      max-request-size: 10MB
-      max-file-size: 1MB
+      max-request-size: 10MB    # 上传文件总的最大值
+      max-file-size: 1MB        #单个文件的最大值
   redis:
     database: 0
     host: localhost
