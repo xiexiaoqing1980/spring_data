@@ -9,7 +9,7 @@ mapper接口代理实现编写规则:
 	3. 映射文件中传入参数类型要等于接口方法的传入参数类型
 	4. 映射文件中返回结果集类型要等于接口方法的返回值类型
  -->
-<mapper namespace="com.example.demo.dao.userMapper">
+<mapper namespace="kingdee.test.platform.dao.userMapper">
 
   <!-- 声明sql片段 -->
   <sql id="userwhere">
@@ -30,19 +30,19 @@ mapper接口代理实现编写规则:
   resultType:返回结果集类型
   #{}占位符:起到占位作用,如果传入的是基本类型(string,long,double,int,boolean,float等),那么#{}中的变量名称可以随意写.
    -->
-  <select id="findUserById" parameterType="int" resultType="com.example.demo.pojo.user">
+  <select id="findUserById" parameterType="int" resultType="kingdee.test.platform.pojo.user">
 		select * from user where id=#{id}
 	</select>
 
-  <select id="findUsers"  resultType="com.example.demo.pojo.user">
+  <select id="findUsers"  resultType="kingdee.test.platform.pojo.user">
 		select * from user
 	</select>
 
-  <insert id="adduser" parameterType="com.example.demo.pojo.user" >
+  <insert id="adduser" parameterType="kingdee.test.platform.pojo.user" >
 		insert into user (username,birthday,sex,address) values(#{username},#{birthday},#{sex},#{address})
 	</insert>
 
-    <select id="findByPage" parameterType="java.lang.Integer" resultType="com.example.demo.pojo.user">
+    <select id="findByPage" parameterType="java.lang.Integer" resultType="kingdee.test.platform.pojo.user">
 		select * from user LIMIT #{start},#{end}
 	</select>
     <delete id="deleteuser" parameterType="java.lang.Integer" >
