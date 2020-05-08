@@ -1,5 +1,6 @@
 package kingdee.test.platform;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 //import org.springframework.data.redis.core.StringRedisTemplate;
@@ -25,11 +26,12 @@ public class SpringDataApplicationTests {
 //        System.out.println(demo.toString());
 //
 //    }
-//	@Test
-//	public void testJson() {
-//
-//
-//	}
+	@Test
+	public void testJson() {
+
+
+
+	}
 
 
 }

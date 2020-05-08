@@ -19,6 +19,13 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/TestReport
+
+
+
   devtools:
     restart:
       enabled: true  #设置开启热部署
@@ -56,3 +63,8 @@ mybatis:
 # 上传文件总的最大值
 server:
   port: 8081
+
+
+
+
+
